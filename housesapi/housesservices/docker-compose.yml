@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  backend:
+    image: vishipayyallore/housesservices:latest
+    command: "python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/housesservices
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: config
+      MYSQL_USER: microservice
+      MYSQL_PASSWORD: microservice
+      MYSQL_ROOT_PASSWORD: microservice
+    volumes:
+      - dbdata:/var/lib/mysql
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+
+volumes:
+  dbdata:
