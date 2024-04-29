@@ -9,6 +9,7 @@ I am learning to create Houses App using Python Django, and ReactJS
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\activate
+python.exe -m pip install --upgrade pip
 
 pip install django
 pip install djangorestframework
