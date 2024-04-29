@@ -49,6 +49,13 @@ python manage.py migrate
 
 ![Admin Site](documentation/images/Admin_Site.PNG)
 
+## Backend - Core Services
+
+```powershell
+pip install Flask Flask-SQLAlchemy SQLAlchemy Flask-Migrate Flask-Script Flask-Cors
+pip install requests mysqlclient markupsafe itsdangerous jinja2 werkzeug pika pytz
+```
+
 ## Frontend
 
 > 1. To be done
