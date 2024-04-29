@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  backend:
+    image: vishipayyallore/coreservices:latest
+    command: "python core.py"
+    ports:
+      - 5005:5005
+    volumes:
+      - .:/coreservices
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: core
+      MYSQL_USER: microservice
+      MYSQL_PASSWORD: microservice
+      MYSQL_ROOT_PASSWORD: microservice
+    volumes:
+      - dbdata:/var/lib/mysql
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+
+volumes:
+  dbdata:
