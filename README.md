@@ -9,6 +9,7 @@ I am learning to create Houses App using Python Django, and ReactJS
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\activate
+python.exe -m pip install --upgrade pip
 
 pip install django
 pip install djangorestframework
@@ -47,6 +48,15 @@ python manage.py migrate
 ![Create Super User](documentation/images/CreateSuperUser.PNG)
 
 ![Admin Site](documentation/images/Admin_Site.PNG)
+
+## Backend - Core Services
+
+```powershell
+pip install Flask Flask-SQLAlchemy SQLAlchemy Flask-Migrate Flask-Script Flask-Cors
+pip install requests mysqlclient markupsafe itsdangerous jinja2 werkzeug pika pytz
+
+docker build --pull --rm -f "Dockerfile" -t coreservices:latest -t vishipayyallore/coreservices:latest .
+```
 
 ## Frontend
 
