@@ -1,8 +1,15 @@
 from flask import Flask
-
+from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 
 core = Flask(__name__)
 
+CORS(core)
+
+# Specifying the database:
+core.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://microservice:microservice@db/core'
+
+db = SQLAlchemy(core)
 
 @core.route('/')
 def index():
