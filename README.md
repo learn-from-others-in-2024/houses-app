@@ -59,11 +59,11 @@ docker build --pull --rm -f "Dockerfile" -t coreservices:latest -t vishipayyallo
 
 docker-compose exec backend sh
 
-python manager.py db init
+flask db init
+flask db migrate -m "Your message here"
+flask db upgrade
+flask db downgrade
 
-python manager.py db migrate
-
-python manager.py db upgrade
 ```
 
 ## Frontend

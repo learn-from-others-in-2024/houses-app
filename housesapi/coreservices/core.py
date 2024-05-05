@@ -1,17 +1,17 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from dataclasses import dataclass
-from sqlalchemy import UniqueConstraint
 from flask_cors import CORS
 
-core = Flask(__name__)
-
-CORS(core)
+app = Flask(__name__)
+CORS(app)
 
 # Specifying the database:
-core.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://microservice:microservice@db/core'
+app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://microservice:microservice@db/core'
 
-db = SQLAlchemy(core)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 
 # Creating the House model:
@@ -28,10 +28,10 @@ class House(db.Model):
     description = db.Column(db.String(150))
 
 
-@core.route('/')
+@app.route('/')
 def index():
     return '<h1>Hello World!</h1>'
 
 
 if __name__ == '__main__':
-    core.run(host='0.0.0.0', port=5005, debug=True)
+    app.run(host='0.0.0.0', port=5005, debug=True)
