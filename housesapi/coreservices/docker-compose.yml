@@ -2,15 +2,16 @@ version: "3.8"
 
 services:
   backend:
-    image: vishipayyallore/coreservices:latest
-    command: "python core.py"
+    build: .
     ports:
-      - 5005:5005
+      - "5005:5005"
     volumes:
       - .:/coreservices
     depends_on:
-      db:
-        condition: service_healthy
+      - db
+    environment:
+      - FLASK_APP=core.py
+    command: flask run
 
   db:
     image: mysql:latest
@@ -23,9 +24,19 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
     ports:
-      - 3306:3306
+      - "3306:3306"
     healthcheck:
-      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "127.0.0.1",
+          "-u",
+          "$$MYSQL_USER",
+          "--password=$$MYSQL_PASSWORD",
+        ]
 
 volumes:
   dbdata:
