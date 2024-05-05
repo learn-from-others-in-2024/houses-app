@@ -56,6 +56,14 @@ pip install Flask Flask-SQLAlchemy SQLAlchemy Flask-Migrate Flask-Script Flask-C
 pip install requests mysqlclient markupsafe itsdangerous jinja2 werkzeug pika pytz
 
 docker build --pull --rm -f "Dockerfile" -t coreservices:latest -t vishipayyallore/coreservices:latest .
+
+docker-compose exec backend sh
+
+flask db init
+flask db migrate -m "Your message here"
+flask db upgrade
+flask db downgrade
+
 ```
 
 ## Frontend
