@@ -56,7 +56,7 @@ def index():
 @app.route('/api/houses/<int:id>/like', methods=['POST'])
 def like(id):
     req = requests.get(
-        "'https://ed-5424825226493952.educative.run'/api/checker")
+        "'http://localhost:8000'/api/checker")
     json = req.json()
 
     try:
@@ -75,7 +75,7 @@ def like(id):
 @app.route('/api/houses/<int:id>/check', methods=['POST'])
 def check(id):
     req = requests.get(
-        "'https://ed-5424825226493952.educative.run'/api/checker")
+        "'http://localhost:8000'/api/checker")
     json = req.json()
 
     try:
