@@ -74,3 +74,13 @@ flask db downgrade
 ```powershell
 npx create-react-app housesweb --template typescript
 ```
+
+## Appendix A
+
+```python
+# config/settings.py
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+```

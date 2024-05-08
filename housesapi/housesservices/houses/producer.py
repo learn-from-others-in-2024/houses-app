@@ -3,7 +3,7 @@ import json
 import os
 
 # Input your rabbitmq url
-params = pika.URLParameters(os.environ.get("Your_AMQP_URL"))
+params = pika.URLParameters(os.getenv("RABBIT_AMQP_URL"))
 
 # Create a connection
 connection = pika.BlockingConnection(params)
