@@ -11,6 +11,7 @@ from .serializers import HouseSerializer
 import random
 
 
+# http://localhost:8000/api/
 def home(request):
     return JsonResponse({
         'message': 'Welcome to the API endpoint!'
