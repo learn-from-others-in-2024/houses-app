@@ -43,6 +43,11 @@ class HouseChecker(db.Model):
 
 
 # Request routing:
+@app.route('/')
+def index():
+    return 'Hello from Core Service'
+
+
 @app.route('/api/houses')
 def index():
     return jsonify(House.query.all())
