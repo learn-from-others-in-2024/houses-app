@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from flask_cors import CORS
 from dataclasses import dataclass
 import requests
+from producer import publish
 
 app = Flask(__name__)
 CORS(app)
@@ -58,6 +59,7 @@ def like(id):
         db.session.add(houseChecker)
         db.session.commit()
 
+        publish('house_liked', id)
     except:
         abort(400, 'You have liked this house.')
 
@@ -77,6 +79,7 @@ def check(id):
         db.session.add(houseChecker)
         db.session.commit()
 
+        publish('house_checked', id)
     except:
         abort(400, 'You have checked this house.')
 
