@@ -41,11 +41,6 @@ class HouseChecker(db.Model):
     UniqueConstraint('checker_id', 'house_id', name='checker_house_unique')
 
 
-# @app.route('/')
-# def index():
-#     return '<h1>Hello World!</h1>'
-
-
 # Request routing:
 @app.route('/api/houses')
 def index():
