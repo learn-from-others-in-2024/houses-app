@@ -1,9 +1,10 @@
 from django.urls import path
 
-from .views import HouseViewSet
+from .views import HouseViewSet, home
 from .views import CheckerAPIView
 
 urlpatterns = [
+    path('', home, name='home'),
     path('houses', HouseViewSet.as_view({
         'get': 'list',
         'post': 'create'
