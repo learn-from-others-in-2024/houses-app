@@ -399,3 +399,4 @@ FodyWeavers.xsd
 
 .venv/
 housesapi/config/db.sqlite3
+housesapi/housesservices/.env

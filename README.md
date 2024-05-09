@@ -2,6 +2,8 @@
 
 I am learning to create Houses App using Python Django, and ReactJS
 
+> 1. <https://www.cloudamqp.com/>
+
 ## Backend - Config
 
 > 1. To be done
@@ -71,4 +73,14 @@ flask db downgrade
 
 ```powershell
 npx create-react-app housesweb --template typescript
+```
+
+## Appendix A
+
+```python
+# config/settings.py
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 ```

@@ -11,8 +11,7 @@ django.setup()
 
 # import models only after calling django.setup()
 # Input your rabbitmq URL
-params = pika.URLParameters(
-    '{{Your_AMQP_URL}}')
+params = pika.URLParameters(os.getenv("RABBIT_AMQP_URL"))
 
 # Create a connection
 connection = pika.BlockingConnection(params)
