@@ -1,6 +1,10 @@
 import pika
 import json
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Input your rabbitmq url
 params = pika.URLParameters(os.getenv("RABBIT_AMQP_URL"))
