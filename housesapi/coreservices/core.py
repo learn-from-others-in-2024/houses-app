@@ -1,3 +1,4 @@
+from datetime import datetime  # Import datetime module
 from flask import Flask, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import UniqueConstraint
@@ -43,6 +44,14 @@ class HouseChecker(db.Model):
 
 
 # Request routing:
+@app.route('/')
+def home():
+    return jsonify({
+        'message': 'Hello from Core Service',
+        'processedAt': datetime.now()
+    })
+
+
 @app.route('/api/houses')
 def index():
     return jsonify(House.query.all())
