@@ -2,7 +2,10 @@ version: "3.8"
 
 services:
   backend:
-    image: vishipayyallore/housesservices:latest
+    # image: vishipayyallore/housesservices:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     command: "python manage.py runserver 0.0.0.0:8000"
     ports:
       - 8000:8000
@@ -11,6 +14,17 @@ services:
     depends_on:
       db:
         condition: service_healthy
+
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: "python -u consumer.py"
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings
+    depends_on:
+      - db
+      - backend
 
   db:
     image: mysql:latest
