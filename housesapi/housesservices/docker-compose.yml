@@ -20,6 +20,8 @@ services:
       context: .
       dockerfile: Dockerfile
     command: "python -u consumer.py"
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings
     depends_on:
       - db
       - backend

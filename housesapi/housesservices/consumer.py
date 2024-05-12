@@ -1,13 +1,13 @@
-from houses.models import House
 import pika
 import os
 import django
 import json
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
-
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 django.setup()
 
+# This import should be after django.setup()
+from houses.models import House
 
 # import models only after calling django.setup()
 # Input your rabbitmq URL
