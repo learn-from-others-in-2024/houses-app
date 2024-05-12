@@ -1,9 +1,10 @@
+import django
 import pika
 import os
-import django
 import json
 
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
+# DJANGO_SETTINGS_MODULE: config.settings should be passed to os.environ. This is required to run Django outside of a project.
+# We have set it in docker-compose.yml file
 django.setup()
 
 # This import should be after django.setup()
