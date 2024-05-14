@@ -18,14 +18,14 @@ const Nav = () => {
                 <span className='navbar-toggler-icon'></span>
             </button>
             <input
-                className='form-control form-control-light w-100'
+                className='form-control form-control-light w-100 rounded'
                 type='text'
                 placeholder='Search'
                 aria-label='Search'
             />
             <ul className='navbar-nav px-3'>
                 <li className='nav-item text-nowrap'>
-                    <a className='nav-link' href='/'>
+                    <a className='nav-link text-white' href='/'>
                         Sign out
                     </a>
                 </li>
