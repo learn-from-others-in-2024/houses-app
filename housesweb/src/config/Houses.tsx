@@ -58,7 +58,7 @@ const Houses = () => {
                                 <tr key={h.id}>
                                     <td>{h.id}</td>
                                     <td>
-                                        <img src={h.image} height='180' alt='Image' />
+                                        <img src={h.image} height='180' alt={h.name} />
                                     </td>
                                     <td>{h.name}</td>
                                     <td>{h.description}</td>
@@ -66,19 +66,12 @@ const Houses = () => {
                                     <td>{h.checks}</td>
                                     <td>
                                         <div className='btn-group mr-2'>
-                                            <Link
-                                                to={`/config/houses/${h.id}/update`}
-                                                className='btn btn-sm btn-outline-secondary'
-                                            >
+                                            <Link to={`/config/houses/${h.id}/update`} className='btn btn-sm btn-outline-secondary'>
                                                 Update
                                             </Link>
-                                            <a
-                                                href='#'
-                                                className='btn btn-sm btn-outline-secondary'
-                                                onClick={() => del(h.id)}
-                                            >
+                                            <button className='btn btn-sm btn-outline-secondary' onClick={() => del(h.id)}>
                                                 Delete
-                                            </a>
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
