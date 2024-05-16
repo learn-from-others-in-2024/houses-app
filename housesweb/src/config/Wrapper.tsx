@@ -9,11 +9,15 @@ const Wrapper = (props: PropsWithChildren<any>) => {
 
             <div className='container-fluid'>
                 <div className='row'>
-                    <Menu />
+                    <div className='col-2'>
+                        <Menu />
+                    </div>
 
-                    <main role='main' className='col-md-9 ml-sm-auto col-lg-10 px-md-4'>
-                        {props.children}
-                    </main>
+                    <div className='col-10'>
+                        <main role='main' className='col-md-9 col-lg-10 px-md-4 w-100'>
+                            {props.children}
+                        </main>
+                    </div>
                 </div>
             </div>
         </div>

@@ -43,7 +43,7 @@ const Houses = () => {
                 <table className='table table-striped table-sm'>
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>Number</th>
                             <th>Image</th>
                             <th>Name</th>
                             <th>Description</th>
