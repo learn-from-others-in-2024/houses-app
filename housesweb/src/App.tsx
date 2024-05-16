@@ -1,24 +1,17 @@
-import React from 'react';
 import './App.css';
-import Nav from './interfaces/Nav';
-import Menu from './interfaces/Menu';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Houses from './config/Houses';
+import Core from './core/Core';
 
 function App() {
   return (
     <div className="App">
-      <div>
-        <Nav />
-
-        <div className='container-fluid'>
-          <div className='row'>
-            <Menu />
-
-            {/* <main role='main' className='col-md-9 ml-sm-auto col-lg-10 px-md-4'>
-              {props.children}
-            </main> */}
-          </div>
-        </div>
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' Component={Core} />
+          <Route path='/config/houses' Component={Houses} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
