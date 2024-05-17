@@ -31,11 +31,6 @@ const HousesCreate = () => {
         setRedirect(true);
     };
 
-    // if (redirect) {
-    //     return <Redirect to={'/config/houses'} />;
-    //     // <redirect to={'/config/houses'} />;
-    // }
-
     return (
         <Wrapper>
             <form onSubmit={submit}>
