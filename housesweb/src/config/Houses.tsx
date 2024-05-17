@@ -28,54 +28,57 @@ const Houses = () => {
 
     return (
         <Wrapper>
-            <div className='pt-3 pb-2 mb-3 border-bottom'>
-                <div className='btn-toolbar mb-2 mb-md-0'>
-                    <Link to='/config/houses/create' className='btn btn-sm btn-outline-success'>
-                        Add
-                    </Link>
+            <div className='mt-4 rounded shadow p-4'>
+                <div className='border-bottom border-bottom d-flex justify-content-between align-items-center'>
+                    <h1>New Houses List</h1>
+                    <div className='btn-toolbar mb-2 mb-md-0'>
+                        <Link to='/config/houses/create' className='btn btn-sm btn-outline-success'>
+                            Add
+                        </Link>
+                    </div>
                 </div>
-            </div>
 
-            <div className='table-responsive'>
-                <table className='table table-striped table-sm'>
-                    <thead>
-                        <tr>
-                            <th>Number</th>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Likes</th>
-                            <th>Checks</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {houses.map((h: House) => {
-                            return (
-                                <tr key={h.id}>
-                                    <td>{h.id}</td>
-                                    <td>
-                                        <img src={h.image} height='180' alt={h.name} />
-                                    </td>
-                                    <td>{h.name}</td>
-                                    <td>{h.description}</td>
-                                    <td>{h.likes}</td>
-                                    <td>{h.checks}</td>
-                                    <td>
-                                        <div className='btn-group mr-2'>
-                                            <Link to={`/config/houses/${h.id}/update`} className='btn btn-sm btn-outline-warning'>
-                                                Update
-                                            </Link>
-                                            <button className='btn btn-sm btn-outline-danger' onClick={() => del(h.id)}>
-                                                Delete
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                <div className='table-responsive'>
+                    <table className='table table-striped table-sm'>
+                        <thead>
+                            <tr>
+                                <th>Number</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Likes</th>
+                                <th>Checks</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {houses.map((h: House) => {
+                                return (
+                                    <tr key={h.id}>
+                                        <td>{h.id}</td>
+                                        <td>
+                                            <img src={h.image} height='180' alt={h.name} />
+                                        </td>
+                                        <td>{h.name}</td>
+                                        <td>{h.description}</td>
+                                        <td>{h.likes}</td>
+                                        <td>{h.checks}</td>
+                                        <td>
+                                            <div className='btn-group mr-2'>
+                                                <Link to={`/config/houses/${h.id}/update`} className='btn btn-sm btn-outline-warning'>
+                                                    Update
+                                                </Link>
+                                                <button className='btn btn-sm btn-outline-danger' onClick={() => del(h.id)}>
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </Wrapper>
     );
