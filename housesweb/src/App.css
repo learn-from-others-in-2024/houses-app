@@ -91,10 +91,10 @@ body {
 .form-control-dark {
   color: #fff;
   background-color: #d9dbde;
-  border-color: #fff;
+  box-shadow: 0 0 0 1px rgb(179, 229, 248);
 }
 
 .form-control-dark:focus {
   border-color: transparent;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 2px rgb(4, 132, 244);
 }
