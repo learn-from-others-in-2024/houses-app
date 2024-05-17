@@ -30,10 +30,7 @@ const Houses = () => {
         <Wrapper>
             <div className='pt-3 pb-2 mb-3 border-bottom'>
                 <div className='btn-toolbar mb-2 mb-md-0'>
-                    <Link
-                        to='/config/houses/create'
-                        className='btn btn-sm btn-outline-secondary'
-                    >
+                    <Link to='/config/houses/create' className='btn btn-sm btn-outline-success'>
                         Add
                     </Link>
                 </div>
@@ -66,10 +63,10 @@ const Houses = () => {
                                     <td>{h.checks}</td>
                                     <td>
                                         <div className='btn-group mr-2'>
-                                            <Link to={`/config/houses/${h.id}/update`} className='btn btn-sm btn-outline-secondary'>
+                                            <Link to={`/config/houses/${h.id}/update`} className='btn btn-sm btn-outline-warning'>
                                                 Update
                                             </Link>
-                                            <button className='btn btn-sm btn-outline-secondary' onClick={() => del(h.id)}>
+                                            <button className='btn btn-sm btn-outline-danger' onClick={() => del(h.id)}>
                                                 Delete
                                             </button>
                                         </div>
