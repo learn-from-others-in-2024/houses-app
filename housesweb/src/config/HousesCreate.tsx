@@ -53,7 +53,7 @@ const HousesCreate = () => {
 
     return (
         <Wrapper>
-            <div className='mt-4 rounded shadow p-4'>
+            <div className='mt-4 rounded shadow border border-light border-1 p-4'>
                 <h1>Add New House</h1>
                 <form onSubmit={submit}>
                     <div className='form-group mb-2'>

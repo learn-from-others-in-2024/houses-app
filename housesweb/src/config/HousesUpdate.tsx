@@ -1,8 +1,4 @@
-import React, {
-    SyntheticEvent,
-    useEffect,
-    useState,
-} from 'react';
+import React, { SyntheticEvent, useEffect, useState, } from 'react';
 import Wrapper from './Wrapper';
 import { useNavigate, useParams } from 'react-router-dom';
 import { House } from '../interfaces/house';
@@ -58,18 +54,18 @@ const HousesUpdate = () => {
 
     return (
         <Wrapper>
-            <div className='mt-4 rounded shadow p-4'>
+            <div className='mt-4 rounded shadow border border-light border-1 p-4'>
                 <h1>Edit House</h1>
                 <form onSubmit={submit}>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label>Name</label>
                         <input placeholder='Name' type='text' className='form-control' name='name' value={name} onChange={(e) => setName(e.target.value)} />
                     </div>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label>Image</label>
                         <input placeholder='Name' type='text' className='form-control' name='image' value={image} onChange={(e) => setImage(e.target.value)} />
                     </div>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label>Description</label>
                         <input placeholder='Description' type='text' className='form-control' name='description' value={description} onChange={(e) => setDescription(e.target.value)} />
                     </div>
