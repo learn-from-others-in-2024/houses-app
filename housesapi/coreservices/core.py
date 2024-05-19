@@ -1,25 +1,18 @@
-from datetime import datetime  # Import datetime module
+from datetime import datetime
 from flask import Flask, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import UniqueConstraint
 from flask_migrate import Migrate
-from dataclasses import dataclass
 from flask_cors import CORS
 from dataclasses import dataclass
 import requests
 from producer import publish
 
-app = Flask(__name__)
-CORS(app)
-
-# Specifying the database:
-app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://microservice:microservice@db/core'
-
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-
+db = SQLAlchemy()
 
 # Creating the House model:
+
+
 @dataclass
 class House(db.Model):
     id: int
@@ -32,8 +25,9 @@ class House(db.Model):
     image = db.Column(db.String(150))
     description = db.Column(db.String(150))
 
-
 # Creating the HouseChecker model:
+
+
 @dataclass
 class HouseChecker(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -43,59 +37,69 @@ class HouseChecker(db.Model):
     UniqueConstraint('checker_id', 'house_id', name='checker_house_unique')
 
 
-# Request routing:
-@app.route('/')
-def home():
-    return jsonify({
-        'message': 'Hello from Core Service',
-        'processedAt': datetime.now()
-    })
+def create_app():
+    app = Flask(__name__)
+    CORS(app)
 
+    # Specifying the database:
+    app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://microservice:microservice@db/core'
 
-@app.route('/api/houses')
-def index():
-    return jsonify(House.query.all())
+    db.init_app(app)
+    migrate = Migrate(app, db)
 
+    # Request routing:
+    @app.route('/')
+    def home():
+        return jsonify({
+            'message': 'Hello from Core Service',
+            'processedAt': datetime.now()
+        })
 
-@app.route('/api/houses/<int:id>/like', methods=['POST'])
-def like(id):
-    req = requests.get(
-        "'http://localhost:8000'/api/checker")
-    json = req.json()
+    @app.route('/api/houses')
+    def index():
+        return jsonify(House.query.all())
 
-    try:
-        houseChecker = HouseChecker(checker_id=json['id'], house_id=id)
-        db.session.add(houseChecker)
-        db.session.commit()
+    @app.route('/api/houses/<int:id>/like', methods=['POST'])
+    def like(id):
+        req = requests.get(
+            "'http://localhost:8000'/api/checker")
+        json = req.json()
 
-        publish('house_liked', id)
-    except:
-        abort(400, 'You have liked this house.')
+        try:
+            houseChecker = HouseChecker(checker_id=json['id'], house_id=id)
+            db.session.add(houseChecker)
+            db.session.commit()
 
-    return jsonify({
-        'message': 'success'
-    })
+            publish('house_liked', id)
+        except:
+            abort(400, 'You have liked this house.')
 
+        return jsonify({
+            'message': 'success'
+        })
 
-@app.route('/api/houses/<int:id>/check', methods=['POST'])
-def check(id):
-    req = requests.get(
-        "'http://localhost:8000'/api/checker")
-    json = req.json()
+    @app.route('/api/houses/<int:id>/check', methods=['POST'])
+    def check(id):
+        req = requests.get(
+            "'http://localhost:8000'/api/checker")
+        json = req.json()
 
-    try:
-        houseChecker = HouseChecker(checker_id=json['id'], house_id=id)
-        db.session.add(houseChecker)
-        db.session.commit()
+        try:
+            houseChecker = HouseChecker(checker_id=json['id'], house_id=id)
+            db.session.add(houseChecker)
+            db.session.commit()
 
-        publish('house_checked', id)
-    except:
-        abort(400, 'You have checked this house.')
+            publish('house_checked', id)
+        except:
+            abort(400, 'You have checked this house.')
 
-    return jsonify({
-        'message': 'success'
-    })
+        return jsonify({
+            'message': 'success'
+        })
+
+    return app
 
 
 if __name__ == '__main__':
+    app = create_app()
     app.run(host='0.0.0.0', port=5005, debug=True)
