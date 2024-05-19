@@ -15,5 +15,6 @@ channel = connection.channel()
 def publish(method, body):
     print('Publishing to core')
     properties = pika.BasicProperties(method)
+    print('publish() :: Properties: ', properties)
     channel.basic_publish(exchange='', routing_key='core',
                           body=json.dumps(body), properties=properties)

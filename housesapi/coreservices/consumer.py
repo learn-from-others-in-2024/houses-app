@@ -17,9 +17,9 @@ channel.queue_declare(queue='core')
 
 
 def callback(ch, method, properties, body):
-    print('Received in core')
     data = json.loads(body)
     print(data)
+    print('Received in core', data, ' Properties: ', properties)
 
     if properties.content_type == 'house_created':
         house = House(id=data['id'], name=data['name'],
@@ -36,7 +36,7 @@ def callback(ch, method, properties, body):
         db.session.commit()
         print('House Updated')
 
-    elif properties.content_type == 'product_deleted':
+    elif properties.content_type == 'house_deleted':
         house = House.query.get(data)
         db.session.delete(house)
         db.session.commit()
