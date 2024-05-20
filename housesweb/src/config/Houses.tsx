@@ -28,7 +28,7 @@ const Houses = () => {
 
     return (
         <Wrapper>
-            <div className='mt-4 rounded shadow p-4'>
+            <div className='mt-4 rounded shadow border border-light border-1 p-4'>
                 <div className='border-bottom border-bottom d-flex justify-content-between align-items-center'>
                     <h1>New Houses List</h1>
                     <div className='btn-toolbar mb-2 mb-md-0'>

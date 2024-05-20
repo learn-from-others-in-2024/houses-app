@@ -33,7 +33,9 @@ class HouseViewSet(viewsets.ViewSet):
         house_serializer.is_valid(raise_exception=True)
         house_serializer.save()
 
-        publish('This house has been created.', house_serializer.data)
+        print('House Created publishing... to core with Content: house_created and Data: ',
+              house_serializer.data)
+        publish('house_created', house_serializer.data)
 
         return Response(house_serializer.data, status=status.HTTP_201_CREATED)
 
@@ -50,7 +52,9 @@ class HouseViewSet(viewsets.ViewSet):
         house_serializer.is_valid(raise_exception=True)
         house_serializer.save()
 
-        publish('This house has been updated.', house_serializer.data)
+        print('House Updated publishing... to core with Content: house_updated and Data: ',
+              house_serializer.data)
+        publish('house_updated', house_serializer.data)
 
         return Response(house_serializer.data, status=status.HTTP_202_ACCEPTED)
 
@@ -59,7 +63,9 @@ class HouseViewSet(viewsets.ViewSet):
         house = House.objects.get(id=pk)
         house.delete()
 
-        publish('This house has been deleted.', pk)
+        print(
+            'House Deleted publishing... to core with Content: house_deleted, and PK: ', pk)
+        publish('house_deleted', pk)
 
         return Response(status=status.HTTP_204_NO_CONTENT)
 
