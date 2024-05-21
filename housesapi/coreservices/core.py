@@ -62,7 +62,7 @@ def create_app():
     @app.route('/api/houses/<int:id>/like', methods=['POST'])
     def like(id):
         req = requests.get(
-            "http://localhost:8000/api/checker")
+            "http://housesservices-backend-1:8000/api/checker")
         json = req.json()
 
         try:
@@ -81,7 +81,7 @@ def create_app():
     @app.route('/api/houses/<int:id>/check', methods=['POST'])
     def check(id):
         req = requests.get(
-            "http://localhost:8000/api/checker")
+            "http://housesservices-backend-1:8000/api/checker")
         json = req.json()
 
         try:

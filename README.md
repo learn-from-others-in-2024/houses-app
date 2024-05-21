@@ -5,6 +5,10 @@ I am learning to create Houses App using Python Django, and ReactJS
 > 1. <https://www.cloudamqp.com/>
 > 1. <http://localhost:3000/config/houses>
 
+```powershell
+docker network create housesappnetwork
+```
+
 ## Backend - Config
 
 > 1. To be done
@@ -85,3 +89,8 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 ```
+
+
+curl -v http://housesservices-backend-1:8000/api/houses
+curl -v http://localhost:8000/api/houses
+curl -v http://housesservices-backend-1:8000/api/checker
