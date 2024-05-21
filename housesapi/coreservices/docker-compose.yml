@@ -14,6 +14,8 @@ services:
     environment:
       - FLASK_APP=core.py
     command: flask run
+    networks:
+      - housesappnetwork
 
   queue:
     build:
@@ -23,6 +25,8 @@ services:
     depends_on:
       - db
       - backend
+    networks:
+      - housesappnetwork
 
   db:
     image: mysql:latest
@@ -48,6 +52,12 @@ services:
           "$$MYSQL_USER",
           "--password=$$MYSQL_PASSWORD",
         ]
+    networks:
+      - housesappnetwork
 
 volumes:
   dbdata:
+
+networks:
+  housesappnetwork:
+    external: true
