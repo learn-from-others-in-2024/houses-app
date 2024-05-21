@@ -52,7 +52,8 @@ const Core = () => {
     return (
         <Wrapper>
             <main role='main'>
-                <div className='album py-5 bg-light'>
+                <div className='album shadow border border-light border-1 mt-4 p-4'>
+                <h1>House List</h1>
                     <div className='container'>
                         <div className='row'>
                             {houses.map((h: House) => {

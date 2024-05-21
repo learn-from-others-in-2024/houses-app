@@ -6,13 +6,18 @@ from flask_migrate import Migrate
 from flask_cors import CORS
 from dataclasses import dataclass
 import requests
+import os
 from producer import publish
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+HOUSES_SERVICE_URL = os.getenv("HOUSES_SERVICE_URL")
 
 db = SQLAlchemy()
 
+
 # Creating the House model:
-
-
 @dataclass
 class House(db.Model):
     id: int
@@ -42,7 +47,7 @@ def create_app():
     CORS(app)
 
     # Specifying the database:
-    app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://microservice:microservice@db/core'
+    app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://microservice:microservice@coreservices-db-1/core'
 
     db.init_app(app)
     migrate = Migrate(app, db)
@@ -61,8 +66,7 @@ def create_app():
 
     @app.route('/api/houses/<int:id>/like', methods=['POST'])
     def like(id):
-        req = requests.get(
-            "http://housesservices-backend-1:8000/api/checker")
+        req = requests.get(f"{HOUSES_SERVICE_URL}/api/checker")
         json = req.json()
 
         try:
@@ -80,8 +84,7 @@ def create_app():
 
     @app.route('/api/houses/<int:id>/check', methods=['POST'])
     def check(id):
-        req = requests.get(
-            "http://housesservices-backend-1:8000/api/checker")
+        req = requests.get(f"{HOUSES_SERVICE_URL}/api/checker")
         json = req.json()
 
         try:
