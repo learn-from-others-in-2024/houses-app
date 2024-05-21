@@ -10,8 +10,9 @@ load_dotenv()
 params = pika.URLParameters(os.getenv("RABBIT_AMQP_URL"))
 
 
+# Create a publisher
 def publish(method, body):
-    print('Publishing to Core Service')
+    print('Publishing to -> Core Service')
 
     # Create a connection
     connection = pika.BlockingConnection(params)
@@ -21,7 +22,8 @@ def publish(method, body):
 
     # Set properties
     properties = pika.BasicProperties(method)
-    print('Houses Service -> publish() :: Properties: ', properties, ' Body: ', body)
+    print('Houses Service -> publish() :: Properties: ',
+          properties, ' Body: ', body)
 
     # Publish message
     channel.basic_publish(exchange='', routing_key='core',
