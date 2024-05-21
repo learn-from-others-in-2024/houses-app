@@ -47,7 +47,7 @@ def create_app():
     CORS(app)
 
     # Specifying the database:
-    app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://microservice:microservice@db/core'
+    app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://microservice:microservice@coreservices-db-1/core'
 
     db.init_app(app)
     migrate = Migrate(app, db)

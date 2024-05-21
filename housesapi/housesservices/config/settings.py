@@ -88,7 +88,7 @@ DATABASES = {
         'NAME': 'config',
         'USER': 'microservice',
         'PASSWORD': 'microservice',
-        'HOST': 'db',
+        'HOST': 'housesservices-db-1',
         'PORT': '3306',
     }
 }
