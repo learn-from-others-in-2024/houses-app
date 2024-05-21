@@ -17,6 +17,8 @@ channel = connection.channel()
 
 # Create a publisher
 def publish(method, body):
+    print('Publishing to -> Config Service')
+
     properties = pika.BasicProperties(method)
     channel.basic_publish(exchange='', routing_key='config',
                           body=json.dumps(body), properties=properties)

@@ -11,7 +11,7 @@ params = pika.URLParameters(os.getenv("RABBIT_AMQP_URL"))
 
 
 def publish(method, body):
-    print('Publishing to core')
+    print('Publishing to Core Service')
 
     # Create a connection
     connection = pika.BlockingConnection(params)
