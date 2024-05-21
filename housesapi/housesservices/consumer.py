@@ -25,12 +25,13 @@ channel.queue_declare(queue='config')
 
 # Defining a callback function
 def callback(ch, method, properties, body):
-    print('Received in config')
+    print('Received in config: ', body)
     id = json.loads(body)
     print(id)
 
     house = House.objects.get(id=id)
-
+    print('House: ', house)
+    
     if house.likes:
         house.likes += 1
         house.save()
