@@ -76,7 +76,8 @@ class CheckerAPIView(APIView):
     # Creating the get method:
     def get(self, request):
         checkers = Checker.objects.all()
+        if not checkers.exists():  # Check if there are any checkers
+            return Response({'error': 'No checkers available'}, status=status.HTTP_404_NOT_FOUND)
+
         checker = random.choice(checkers)
-        return Response({
-            'id': checker.id
-        })
+        return Response({'id': checker.id})

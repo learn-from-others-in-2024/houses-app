@@ -7,6 +7,13 @@ I am learning to create Houses App using Python Django, and ReactJS
 
 ```powershell
 docker network create housesappnetwork
+
+# python manage.py createsuperuser
+Username (leave blank to use 'root'): admin@example.com
+Email address: admin@example.com
+Password: 
+Password (again): 
+Superuser created successfully.
 ```
 
 ## Backend - Config
@@ -66,8 +73,9 @@ docker build --pull --rm -f "Dockerfile" -t coreservices:latest -t vishipayyallo
 
 docker-compose exec backend sh
 
+rm -rf migrations
 flask db init
-flask db migrate -m "Your message here"
+flask db migrate -m "Initial Migration"
 flask db upgrade
 flask db downgrade
 ```
@@ -94,3 +102,29 @@ load_dotenv()
 curl -v http://housesservices-backend-1:8000/api/houses
 curl -v http://localhost:8000/api/houses
 curl -v http://housesservices-backend-1:8000/api/checker
+
+
+```
+# Access MySQL client
+mysql -u your_username -p your_database_name
+Enter password: ********
+
+# Inside MySQL client
+mysql> SELECT * FROM alembic_version;
++----------------+-------------+
+| version_num    | timestamp   |
++----------------+-------------+
+| 9d599c0c6ccf   | 2024-01-01  |
++----------------+-------------+
+
+# If there are entries, delete them
+mysql> DELETE FROM alembic_version;
+
+# Verify the table is empty
+mysql> SELECT * FROM alembic_version;
+Empty set (0.00 sec)
+
+# Exit the MySQL client
+mysql> exit;
+Bye
+```
