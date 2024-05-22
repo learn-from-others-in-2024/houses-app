@@ -7,6 +7,13 @@ I am learning to create Houses App using Python Django, and ReactJS
 
 ```powershell
 docker network create housesappnetwork
+
+# python manage.py createsuperuser
+Username (leave blank to use 'root'): admin@example.com
+Email address: admin@example.com
+Password: 
+Password (again): 
+Superuser created successfully.
 ```
 
 ## Backend - Config
@@ -66,8 +73,9 @@ docker build --pull --rm -f "Dockerfile" -t coreservices:latest -t vishipayyallo
 
 docker-compose exec backend sh
 
+rm -rf migrations
 flask db init
-flask db migrate -m "Your message here"
+flask db migrate -m "Initial Migration"
 flask db upgrade
 flask db downgrade
 ```
