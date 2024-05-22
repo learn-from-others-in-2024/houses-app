@@ -39,7 +39,7 @@ def callback(ch, method, properties, body):
                 print('House Updated')
 
         elif properties.content_type == 'house_deleted':
-            house = House.query.get(data['id'])
+            house = House.query.get(data)
             if house:
                 db.session.delete(house)
                 db.session.commit()
