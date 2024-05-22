@@ -94,3 +94,29 @@ load_dotenv()
 curl -v http://housesservices-backend-1:8000/api/houses
 curl -v http://localhost:8000/api/houses
 curl -v http://housesservices-backend-1:8000/api/checker
+
+
+```
+# Access MySQL client
+mysql -u your_username -p your_database_name
+Enter password: ********
+
+# Inside MySQL client
+mysql> SELECT * FROM alembic_version;
++----------------+-------------+
+| version_num    | timestamp   |
++----------------+-------------+
+| 9d599c0c6ccf   | 2024-01-01  |
++----------------+-------------+
+
+# If there are entries, delete them
+mysql> DELETE FROM alembic_version;
+
+# Verify the table is empty
+mysql> SELECT * FROM alembic_version;
+Empty set (0.00 sec)
+
+# Exit the MySQL client
+mysql> exit;
+Bye
+```

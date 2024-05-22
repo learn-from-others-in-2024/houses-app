@@ -30,9 +30,8 @@ class House(db.Model):
     image = db.Column(db.String(150))
     description = db.Column(db.String(150))
 
+
 # Creating the HouseChecker model:
-
-
 @dataclass
 class HouseChecker(db.Model):
     id = db.Column(db.Integer, primary_key=True)
