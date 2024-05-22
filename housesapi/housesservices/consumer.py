@@ -31,12 +31,12 @@ def callback(ch, method, properties, body):
 
     house = House.objects.get(id=id)
     print('House: ', house)
-    
-    if house.likes:
+
+    if properties.content_type == 'house_liked':
         house.likes += 1
         house.save()
         print('House likes increased!')
-    else:
+    elif properties.content_type == 'house_checked':
         house.checks += 1
         house.save()
         print('House checks increased!')

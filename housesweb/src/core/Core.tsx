@@ -11,7 +11,14 @@ const Core = () => {
 
             const data = await response.json();
 
-            setHouses(data);
+            // Initialize likes and checks if not present
+            const initializedData = data.map((house: House) => ({
+                ...house,
+                likes: house.likes || 0,
+                checks: house.checks || 0,
+            }));
+
+            setHouses(initializedData);
         })();
     }, []);
 
@@ -53,7 +60,7 @@ const Core = () => {
         <Wrapper>
             <main role='main'>
                 <div className='album shadow border border-light border-1 mt-4 p-4'>
-                <h1>House List</h1>
+                    <h1>House List</h1>
                     <div className='container'>
                         <div className='row'>
                             {houses.map((h: House) => {
