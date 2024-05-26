@@ -5,19 +5,79 @@ I am learning to create Houses App using Python Django, and ReactJS
 > 1. <https://www.cloudamqp.com/>
 > 1. <http://localhost:3000/config/houses>
 
+---
+
+After Completion of 3 Microservices
+
+---
+
+## 1. Creating a Network and Deploy two microservices
+
+> 1. Create a Network by executing the below command
+> 1. Deploy two `coreservices`, and `houseservices` Microservices by executing Docker-Compose
+
 ```powershell
 docker network create housesappnetwork
+```
+
+## 2. Migrate the Data for Coreservices
+
+### 2.1. `exec` into the core services container
+
+```powershell
+rm -rf migrations
+flask db init
+flask db migrate -m "Initial Migration"
+flask db upgrade
+flask db downgrade
+```
+
+![Core Services Migrations](./documentation/images/CoreServices_Migration.PNG)
+
+### 2.2. Verify the MySQL database and tables
+
+```bash
+# Access MySQL client
+mysql -u microservice -D core -p
+Enter password: ********
+
+# Inside MySQL client
+mysql> SELECT * FROM alembic_version;
+
+# If there are entries, delete them
+mysql> DELETE FROM alembic_version;
+
+# Show the tables
+mysql> show tables;
+
+# Exit the MySQL client
+mysql> exit;
+
+```
+
+![MySQL Inside Container](./documentation/images/MySQL_Database_Tables.PNG)
+
+## Creating Admin User
+
+```powershell
+
 
 # python manage.py createsuperuser
 Username (leave blank to use 'root'): admin@example.com
 Email address: admin@example.com
-Password: 
-Password (again): 
+Password:
+Password (again):
 Superuser created successfully.
 
-mysql -u microservice -p core 
+mysql -u microservice -p core
 show tables;
 ```
+
+---
+
+Starting a fresh
+
+---
 
 ## Backend - Config
 
@@ -101,11 +161,9 @@ from dotenv import load_dotenv
 load_dotenv()
 ```
 
-
 curl -v http://housesservices-backend-1:8000/api/houses
 curl -v http://localhost:8000/api/houses
 curl -v http://housesservices-backend-1:8000/api/checker
-
 
 ```
 # Access MySQL client
@@ -131,3 +189,13 @@ Empty set (0.00 sec)
 mysql> exit;
 Bye
 ```
+
+## Reference(s)
+
+> 1. <https://learn.microsoft.com/en-gb/dotnet/aspire/get-started/build-your-first-aspire-app?pivots=visual-studio>
+> 1. <https://learn.microsoft.com/en-gb/dotnet/aspire/deployment/azure/aca-deployment>
+> 1. <https://learn.microsoft.com/en-gb/dotnet/aspire/fundamentals/telemetry#export-opentelemetry-data-for-monitoring>
+> 1. <https://learn.microsoft.com/en-gb/dotnet/aspire/deployment/azure/application-insights>
+> 1. <https://learn.microsoft.com/en-gb/training/modules/use-telemetry-dotnet-aspire/6-exercise-use-telemetry-dotnet-aspire>
+> 1. <https://devblogs.microsoft.com/dotnet/introducing-aspnetcore-metrics-and-grafana-dashboards-in-dotnet-8/>
+> 1. <https://devblogs.microsoft.com/dotnet/introducing-dotnet-aspire-simplifying-cloud-native-development-with-dotnet-8/>
