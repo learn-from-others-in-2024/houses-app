@@ -38,27 +38,21 @@ flask db downgrade
 
 ```bash
 # Access MySQL client
-mysql -u your_username -p your_database_name
+mysql -u microservice -D core -p
 Enter password: ********
 
 # Inside MySQL client
 mysql> SELECT * FROM alembic_version;
-+----------------+-------------+
-| version_num    | timestamp   |
-+----------------+-------------+
-| 9d599c0c6ccf   | 2024-01-01  |
-+----------------+-------------+
 
 # If there are entries, delete them
 mysql> DELETE FROM alembic_version;
 
-# Verify the table is empty
-mysql> SELECT * FROM alembic_version;
-Empty set (0.00 sec)
+# Show the tables
+mysql> show tables;
 
 # Exit the MySQL client
 mysql> exit;
-Bye
+
 ```
 
 ## Creating Admin User
