@@ -55,6 +55,8 @@ mysql> exit;
 
 ```
 
+![MySQL Inside Container](./documentation/images/MySQL_Database_Tables.PNG)
+
 ## Creating Admin User
 
 ```powershell
