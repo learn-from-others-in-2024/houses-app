@@ -77,21 +77,20 @@ show tables;
 
 ![Houses Service Mysql Db Tables](./documentation/images/HousesService_Mysql_Db_Tables.PNG)
 
-### 3.x. Creating Admin User
+### 3.3. Creating Admin User
+
+> 1. `exec` into the `housesservices` container
 
 ```powershell
-
-
-# python manage.py createsuperuser
+python manage.py createsuperuser
 Username (leave blank to use 'root'): admin@example.com
 Email address: admin@example.com
 Password:
 Password (again):
 Superuser created successfully.
-
-mysql -u microservice -p core
-show tables;
 ```
+
+![Houses Service Admin User](./documentation/images/HousesService_Admin_User.PNG)
 
 ---
 
