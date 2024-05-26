@@ -5,6 +5,8 @@ I am learning to create Houses App using Python Django, and ReactJS
 > 1. <https://www.cloudamqp.com/>
 > 1. <http://localhost:3000/config/houses>
 
+## Creating Admin User
+
 ```powershell
 docker network create housesappnetwork
 
