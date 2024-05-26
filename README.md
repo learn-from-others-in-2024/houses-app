@@ -11,11 +11,11 @@ docker network create housesappnetwork
 # python manage.py createsuperuser
 Username (leave blank to use 'root'): admin@example.com
 Email address: admin@example.com
-Password: 
-Password (again): 
+Password:
+Password (again):
 Superuser created successfully.
 
-mysql -u microservice -p core 
+mysql -u microservice -p core
 show tables;
 ```
 
@@ -101,11 +101,9 @@ from dotenv import load_dotenv
 load_dotenv()
 ```
 
-
 curl -v http://housesservices-backend-1:8000/api/houses
 curl -v http://localhost:8000/api/houses
 curl -v http://housesservices-backend-1:8000/api/checker
-
 
 ```
 # Access MySQL client
@@ -131,3 +129,13 @@ Empty set (0.00 sec)
 mysql> exit;
 Bye
 ```
+
+## Reference(s)
+
+> 1. <https://learn.microsoft.com/en-gb/dotnet/aspire/get-started/build-your-first-aspire-app?pivots=visual-studio>
+> 1. <https://learn.microsoft.com/en-gb/dotnet/aspire/deployment/azure/aca-deployment>
+> 1. <https://learn.microsoft.com/en-gb/dotnet/aspire/fundamentals/telemetry#export-opentelemetry-data-for-monitoring>
+> 1. <https://learn.microsoft.com/en-gb/dotnet/aspire/deployment/azure/application-insights>
+> 1. <https://learn.microsoft.com/en-gb/training/modules/use-telemetry-dotnet-aspire/6-exercise-use-telemetry-dotnet-aspire>
+> 1. <https://devblogs.microsoft.com/dotnet/introducing-aspnetcore-metrics-and-grafana-dashboards-in-dotnet-8/>
+> 1. <https://devblogs.microsoft.com/dotnet/introducing-dotnet-aspire-simplifying-cloud-native-development-with-dotnet-8/>
