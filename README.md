@@ -22,7 +22,7 @@ docker network create housesappnetwork
 
 ## 2. Migrate the Data for Coreservices
 
-### 2.1. `exec` into the core services container
+### 2.1. `exec` into the `coreservices` container
 
 ```powershell
 rm -rf migrations
@@ -57,21 +57,40 @@ mysql> exit;
 
 ![MySQL Inside Container](./documentation/images/MySQL_Database_Tables.PNG)
 
-## Creating Admin User
+## 3. Migrate the Data for housesservices
+
+### 3.1. `exec` into the `housesservices` container
 
 ```powershell
+ls
+python manage.py migrate
+```
 
+![Houses Service Migration](./documentation/images/HousesService_Migration.PNG)
 
-# python manage.py createsuperuser
+### 3.2. Verify the MySQL database and tables
+
+```powershell
+mysql -u microservice -D config -p
+show tables;
+```
+
+![Houses Service Mysql Db Tables](./documentation/images/HousesService_Mysql_Db_Tables.PNG)
+
+### 3.3. Creating Admin User
+
+> 1. `exec` into the `housesservices` container
+
+```powershell
+python manage.py createsuperuser
 Username (leave blank to use 'root'): admin@example.com
 Email address: admin@example.com
 Password:
 Password (again):
 Superuser created successfully.
-
-mysql -u microservice -p core
-show tables;
 ```
+
+![Houses Service Admin User](./documentation/images/HousesService_Admin_User.PNG)
 
 ---
 
